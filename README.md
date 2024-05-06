@@ -1,1 +1,2 @@
-# SOLIDLab
+# SOLID Principle
+# UML Diagram
