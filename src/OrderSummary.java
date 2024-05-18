@@ -2,14 +2,14 @@ public class OrderSummary implements Order {
     private OrderCalculator orderCalculator;
     private OrderPlacer orderPlacer;
     private InvoiceGenerator invoiceGenerator;
-    private EmailSender emailSender;
+    private EmailNotifier emailNotifier;
 
     public OrderSummary(OrderCalculator orderCalculator, OrderPlacer orderPlacer,
-                          InvoiceGenerator invoiceGenerator, EmailSender emailSender) {
+                        InvoiceGenerator invoiceGenerator, EmailNotifier emailNotifier) {
         this.orderCalculator = orderCalculator;
         this.orderPlacer = orderPlacer;
         this.invoiceGenerator = invoiceGenerator;
-        this.emailSender = emailSender;
+        this.emailNotifier = emailNotifier;
     }
 
     @Override
@@ -20,6 +20,6 @@ public class OrderSummary implements Order {
         orderPlacer.placeOrder(orderInfo.getCustomerName(), orderInfo.getAddress());
 
         invoiceGenerator.generateInvoice(orderInfo.getInvoiceFileName());
-        emailSender.sendEmailNotification(orderInfo.getEmail());
+        emailNotifier.sendEmailNotification(orderInfo.getEmail());
     }
 }
