@@ -1,21 +1,20 @@
 public class Client {
-
-    private static boolean someCondition;
-
     public static void main(String[] args) {
-        TotalCalculator totalCalculator = new OrderTotalCounter();
-        OrderPlacer orderPlacer = new OrderPlacerInt();
-        InvoiceGenerator invoiceGenerator = new InvoiceGeneratorInt();
-        EmailNotifier emailNotifier = new EmailNotifierInt();
+        OrderCalculator orderCalculator = new OrderCalculator();
+        OrderPlacer orderPlacer = new OrderPlacer();
+        InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+        EmailSender emailSender = new EmailSender();
 
-        Order order = new Order(totalCalculator, orderPlacer, invoiceGenerator, emailNotifier);
+        Order orderProcessor = new OrderProcessor(orderCalculator, orderPlacer, invoiceGenerator, emailSender);
 
-        order.calculateTotal(10.0, 2);
-        order.placeOrder("John Doe", "123 Main St");
+        OrderInfo orderInfo = new OrderInfo();
+        orderInfo.setPrice(6.0);
+        orderInfo.setQuantity(4);
+        orderInfo.setCustomerName("Neyow");
+        orderInfo.setAddress("Hollywood");
+        orderInfo.setInvoiceFileName("invoice.jpg");
+        orderInfo.setEmail("neo.villanueva@neu.edu.ph");
 
-        if (someCondition) {
-            order.generateInvoice("order_123.pdf");
-            order.sendEmailNotification("johndoe@example.com");
-        }
+        orderProcessor.processOrder(orderInfo);
     }
 }
