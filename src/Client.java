@@ -3,9 +3,9 @@ public class Client {
         OrderCalculator orderCalculator = new OrderCalculator();
         OrderPlacer orderPlacer = new OrderPlacer();
         InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
-        EmailSender emailSender = new EmailSender();
+        EmailNotifier emailNotifier = new EmailNotifier();
 
-        Order orderProcessor = new OrderProcessor(orderCalculator, orderPlacer, invoiceGenerator, emailSender);
+        Order orderProcessor = new OrderSummary(orderCalculator, orderPlacer, invoiceGenerator, emailNotifier);
 
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setPrice(6.0);
